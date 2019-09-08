@@ -52,6 +52,7 @@ const int LED_GREEN = 5;
 const int LED_RED = 2;
 const int LED_BLUE = 4;
 const int BUTTON_PIN = D1;
+const int WET_SENSOR = A0;
 
 //////////////////////
 // Button Variables //
@@ -61,7 +62,7 @@ int LAST_BUTTON_STATE = LOW;
 long LAST_DEBOUNCE_TIME = 0;
 long DEBOUNCE_DELAY = 50;
 int BUTTON_COUNTER = 0;
-
+int value = 0;
 void setup() {
 
   initHardware();
@@ -81,6 +82,13 @@ void setup() {
 }
 
 void loop() {
+
+   Serial.print("MOISTURE LEVEL : ");
+   value= analogRead(WET_SENSOR);
+   value= value/10;
+   Serial.println(value);
+
+     delay(1000);
 
   // Handle WiFi Setup and Webserver for reset page
   if (SETUP_MODE) {
